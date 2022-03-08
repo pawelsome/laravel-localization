@@ -723,13 +723,19 @@ class LaravelLocalization
      */
     protected function findTranslatedRouteByPath($path, $url_locale)
     {
-        // check if this url is a translated url
         foreach ($this->translatedRoutes as $translatedRoute) {
-            if ($this->translator->get($translatedRoute, [], $url_locale) == rawurldecode($path)) {
+            $route = $this->translator->get($translatedRoute, [], $url_locale);
+            $routeAttributes = explode('/', $route);
+            $pathAttributes = explode('/', $path);
+            foreach ($routeAttributes as $key => $attribute) {
+                if (strpos($attribute, "{") !== false && array_key_exists($key, $pathAttributes)) {
+                    $routeAttributes[$key] = $pathAttributes[$key];
+                }
+            }
+            if ($routeAttributes == $pathAttributes) {
                 return $translatedRoute;
             }
         }
-
         return false;
     }
 
