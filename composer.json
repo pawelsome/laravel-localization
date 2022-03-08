@@ -1,8 +1,8 @@
 {
-    "name": "mcamara/laravel-localization",
+    "name": "pawelsome/laravel-localization",
     "description": "Easy localization for Laravel",
     "keywords": ["localization", "laravel", "php"],
-    "homepage": "https://github.com/mcamara/laravel-localization",
+    "homepage": "https://github.com/pawelsome/laravel-localization",
     "license": "MIT",
     "authors": [
         {
